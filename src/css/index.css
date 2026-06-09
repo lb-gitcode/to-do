@@ -2,13 +2,24 @@
 
 :root {
   --primary-text-colour: rgb(48, 33, 66);
+  --secondary-text-colour: rgb(62, 59, 94);
+  --primary-btn-colour: rgb(173, 107, 235);
+  --primary-btn-hover: rgb(127, 80, 214);
+  --primary-btn-text: rgb(248, 251, 255);
+  --primary-btn-text-hover: rgb(226, 226, 248);
+}
+
+* {
+  transition: all 0.2s ease-in-out;
 }
 
 body {
-  background-color: rgb(226, 223, 252);
+  background-color: rgb(227, 225, 247);
   display: flex;
   flex-direction: column;
 }
+
+/* Header */
 
 header {
   text-align: center;
@@ -20,16 +31,81 @@ header h2 {
   color: var(--primary-text-colour);
 }
 
+/* Tasks */
+
+.task-input {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  input[type=text] {
+    margin-right: 15px;
+    border: 1px solid rgb(219, 219, 230);
+  }
+  input[type=text]:focus {
+    border-color: rgb(135, 135, 161);
+  }
+  input[type=submit] {
+    background-color: var(--primary-btn-colour);
+    color: var(--primary-btn-text);
+  }
+  input[type=submit]:hover {
+    background-color: var(--primary-btn-hover);
+    color: var(--primary-btn-text-hover);
+  }
+  input[type=text], input[type=submit] {
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+}
+
 .task-container {
   width: min(100% - 60px, 1080px);
   height: calc(100dvh - 300px);
   margin-inline: auto;
+  padding: 10px;
   background-color: rgb(248, 251, 255);
+  border-radius: 8px;
+  gap: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  box-sizing: border-box;
 }
 
 .to-do-task {
-  background-color: blue;
+  background-color: rgb(226, 220, 253);
   color: var(--primary-text-colour);
-  width: 25%;
+  width: calc(25% - 4px);
   height: 100px;
+  display: flex;
+  border-radius: 4px;
+}
+
+.task-content { 
+  margin: 5px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  h4 {
+    font-size: 20px;
+  }
+  p {
+    color: var(--secondary-text-colour);
+  }
+}
+
+/* Task Progress */
+
+.task-progress, .in-progress, .complete {
+  width: 8px;
+  margin-right: 10px;
+  border-radius: 4px 0 0 4px;
+}
+
+.in-progress {
+  background-color: rgb(170, 242, 255);
+}
+
+.complete {
+  background-color: rgb(156, 255, 164);
 }
