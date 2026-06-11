@@ -10,9 +10,9 @@ function ToDoTask(props)
         <div>
           <p>{props.time}</p>
         </div>
-        <div>
-          <input type='button' />
-          <input type='button' />
+        <div className="task-btns">
+          <input type='button' value='✔️' className="status-btn" />
+          <input type='button' value='🗑️' className="delete-btn" />
         </div>
       </div>
     </div>

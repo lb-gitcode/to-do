@@ -14,7 +14,7 @@
 }
 
 body {
-  background-color: rgb(227, 225, 247);
+  background-color: rgb(216, 215, 230);
   display: flex;
   flex-direction: column;
 }
@@ -39,7 +39,7 @@ header h2 {
   margin-bottom: 30px;
   input[type=text] {
     margin-right: 15px;
-    border: 1px solid rgb(219, 219, 230);
+    border: 1px solid rgb(200, 200, 211);
   }
   input[type=text]:focus {
     border-color: rgb(135, 135, 161);
@@ -58,6 +58,10 @@ header h2 {
   }
 }
 
+.error {
+  color: rgb(243, 124, 164);
+}
+
 .task-container {
   width: min(100% - 60px, 1080px);
   height: calc(100dvh - 300px);
@@ -70,10 +74,15 @@ header h2 {
   flex-wrap: wrap;
   overflow-y: scroll;
   box-sizing: border-box;
+  ul li {
+    width: calc(25% - 4px);
+    height: 100px;
+  }
 }
 
 .to-do-task {
-  background-color: rgb(226, 220, 253);
+  background-color: rgb(239, 237, 245);
+  border: 1px solid rgb(223, 221, 231);
   color: var(--primary-text-colour);
   width: calc(25% - 4px);
   height: 100px;
@@ -82,6 +91,7 @@ header h2 {
 }
 
 .task-content { 
+  width: 100%;
   margin: 5px 0;
   display: flex;
   flex-direction: column;
@@ -92,6 +102,24 @@ header h2 {
   p {
     color: var(--secondary-text-colour);
   }
+}
+
+.task-btns {
+  text-align: end;
+  margin-right: 20px;
+}
+
+.status-btn, .delete-btn {
+  width: 20px;
+  height: 20px;
+}
+
+.status-btn:hover, .delete-btn:hover {
+  transform: translateY(-3px);
+}
+
+.status-btn {
+  margin-right: 10px;
 }
 
 /* Task Progress */
