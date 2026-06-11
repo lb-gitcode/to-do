@@ -1,6 +1,6 @@
 import TaskInput from "./components/TaskInput";
 import ToDoTask from "./components/ToDoTask";
-import { useReducer, useEffect, act } from "react";
+import { useReducer, useEffect } from "react";
 
 function reducer(tasks, action)
 {
@@ -27,12 +27,43 @@ function reducer(tasks, action)
         sBuffer += '0';
       }
 
-      array.push({ index: 0, name: action.payload, progress: 'in-progress', time: `${y}-${m}-${d} ${h}:${minsBuffer}${min}:${sBuffer}${s}` });
+      array.push({ index: 1, name: action.payload, progress: 'in-progress', time: `${y}-${m}-${d} ${h}:${minsBuffer}${min}:${sBuffer}${s}` });
       console.log(tasks);
       setArray(array, 'Tasks');
       return array;
     case 'GET':
       // return getArray('Tasks');
+      break;
+    case 'CHANGE':
+      let task = tasks.find(i => i.index === action.payload);
+      if (task !== undefined)
+      {
+        let index = tasks.findIndex(i => i.index === action.payload);
+        console.log(index);
+        if (task.progress === 'in-progress')
+        {
+          console.log('hi');
+          task.progress = 'complete';
+          tasks[index] = task;
+        }
+        else 
+        {
+          console.log('heyyy');
+          task.progress = 'in-progress';
+          tasks[index] = task;
+        }
+        console.log(task);
+        // set array tasks
+      }
+      return tasks;
+    case 'DELETE':
+      let deleteTask = tasks.find(i => i.index === action.payload);
+      if (deleteTask !== undefined)
+      {
+        tasks = tasks.filter(t => t.index !== action.payload);
+      }
+      // set array tasks
+      return tasks;
     default:
       return tasks;
   }
@@ -65,10 +96,6 @@ function App() {
   const [tasks, dispatch] = useReducer(reducer, []);  
   const [taskIndex, addIndex] = useReducer(dispatchIndex, 1);
 
-  const addTask = () => {
-    dispatch({type: 'ADD' });
-  }
-
   useEffect(() => {
     dispatch({type: 'GET'});
   }, []);
@@ -86,6 +113,8 @@ function App() {
               taskName={link.name} 
               time={link.time} 
               taskProgress={link.progress} 
+              onChange={() => dispatch({type: 'CHANGE', payload: link.index})}
+              onDelete={() => dispatch({type: 'DELETE', payload: link.index})}
             />
           ))}
       </div>

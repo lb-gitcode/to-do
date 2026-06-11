@@ -59,7 +59,8 @@ header h2 {
 }
 
 .error {
-  color: rgb(243, 124, 164);
+  color: rgb(221, 85, 97);
+  margin-right: 10px;
 }
 
 .task-container {
@@ -116,6 +117,10 @@ header h2 {
 
 .status-btn:hover, .delete-btn:hover {
   transform: translateY(-3px);
+}
+
+.status-btn:active, .delete-btn:active {
+  opacity: 70%;
 }
 
 .status-btn {

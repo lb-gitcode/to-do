@@ -11,8 +11,8 @@ function ToDoTask(props)
           <p>{props.time}</p>
         </div>
         <div className="task-btns">
-          <input type='button' value='✔️' className="status-btn" />
-          <input type='button' value='🗑️' className="delete-btn" />
+          <input type='button' value='✔️' className="status-btn" onClick={props.onChange} />
+          <input type='button' value='🗑️' className="delete-btn" onClick={props.onDelete} />
         </div>
       </div>
     </div>
