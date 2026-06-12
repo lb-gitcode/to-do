@@ -126,7 +126,7 @@ function dispatchIndex(taskIndex, action)
       }
     case 'GET':
       let arr = getArray('Tasks');
-      if (arr.length > 0)
+      if (arr !== null && arr!== undefined && arr.length > 0)
       {
         return Math.max(...arr.map(i => i.index)) + 1;
       }
