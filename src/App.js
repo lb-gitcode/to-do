@@ -7,7 +7,6 @@ function reducer(tasks, action)
   switch (action.type)
   {
     case 'ADD':
-      let now = getCurrentTime();
       if (tasks !== null && tasks !== undefined)
       {
         let array = [...tasks];
@@ -51,6 +50,18 @@ function reducer(tasks, action)
         setArray(newArr, 'Tasks');
       }
       return newArr;
+    case 'EDIT':
+      let editTask = tasks.find(i => i.index === action.payload);
+      let editArr = [...tasks];
+      if (editTask !== undefined)
+      {
+        console.log('Heyyy');
+      }
+      else 
+      {
+        console.log('There is an issue with this task.');
+      }
+      return editArr;
     case 'DELETE':
       let deleteTask = tasks.find(i => i.index === action.payload);
       if (deleteTask !== undefined)
@@ -139,6 +150,7 @@ function App() {
               time={link.time} 
               taskProgress={link.progress} 
               onChange={() => dispatch({type: 'CHANGE', payload: link.index, prog: link.progress})}
+              onEdit={() => dispatch({type: 'EDIT', payload: link.index})}
               onDelete={() => dispatch({type: 'DELETE', payload: link.index})}
             />
           ))}

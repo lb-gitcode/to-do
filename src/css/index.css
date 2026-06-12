@@ -120,20 +120,20 @@ header h2 {
   margin-right: 20px;
 }
 
-.status-btn, .delete-btn {
+.status-btn, .delete-btn, .edit-btn {
   width: 20px;
   height: 20px;
 }
 
-.status-btn:hover, .delete-btn:hover {
+.status-btn:hover, .delete-btn:hover, .edit-btn:hover {
   transform: translateY(-3px);
 }
 
-.status-btn:active, .delete-btn:active {
+.status-btn:active, .delete-btn:active, .edit-btn:active {
   opacity: 70%;
 }
 
-.status-btn {
+.status-btn, .edit-btn {
   margin-right: 10px;
 }
 

@@ -12,6 +12,7 @@ function ToDoTask(props)
         </div>
         <div className="task-btns">
           <input type='button' value='✔️' className="status-btn" onClick={props.onChange} />
+          <input type='button' value='✏️' className="edit-btn" onClick={props.onEdit} />
           <input type='button' value='🗑️' className="delete-btn" onClick={props.onDelete} />
         </div>
       </div>
