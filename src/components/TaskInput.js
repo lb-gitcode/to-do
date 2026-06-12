@@ -1,12 +1,11 @@
-import { useReducer } from "react";
 import { useForm } from 'react-hook-form';
 
 function TaskInput(props)
 {
-  const { register, getValues, handleSubmit, formState: {errors}, reset } = useForm();
+  const { register, handleSubmit, formState: {errors}, reset } = useForm();
   const formResponse = (data) => {
     reset();
-    props.dispatch({ type: 'ADD', payload: data.TaskName})
+    props.dispatch({ type: 'ADD', payload: data.TaskName, index: props.taskIndex })
     props.addIndex({ type: 'ADD' });
     return data;
   }
