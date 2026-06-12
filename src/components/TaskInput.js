@@ -13,14 +13,16 @@ function TaskInput(props)
   return(
     <div className='task-input'>
       <form id="task-input" onSubmit={handleSubmit(formResponse)}>
-        <input 
-          type='text' 
-          placeholder='Enter a task' 
-          {...register('TaskName', {
-            required: true
-          })}
-        />
-        {errors.TaskName?.type === 'required' && <span className="error">*Task name required.</span>}
+        <div className='input-container'>
+          <input 
+            type='text' 
+            placeholder='Enter a task' 
+            {...register('TaskName', {
+              required: true
+            })}
+          />
+          {errors.TaskName?.type === 'required' && <span className="error">*Task name required.</span>}
+        </div>
         <input type='submit' value='Add' />
       </form>
     </div>

@@ -33,10 +33,15 @@ header h2 {
 
 /* Tasks */
 
-.task-input {
+.task-input form {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
+  .input-container {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+  }
   input[type=text] {
     margin-right: 15px;
     border: 1px solid rgb(200, 200, 211);
@@ -45,6 +50,8 @@ header h2 {
     border-color: rgb(135, 135, 161);
   }
   input[type=submit] {
+    margin: 2px;
+    height: 55%;
     background-color: var(--primary-btn-colour);
     color: var(--primary-btn-text);
   }
