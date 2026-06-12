@@ -59,6 +59,9 @@ header h2 {
     background-color: var(--primary-btn-hover);
     color: var(--primary-btn-text-hover);
   }
+  input[type=submit]:active {
+    opacity: 70%;
+  }
   input[type=text], input[type=submit] {
     padding: 4px 8px;
     border-radius: 4px;

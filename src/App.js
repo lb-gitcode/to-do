@@ -119,7 +119,7 @@ function dispatchIndex(taskIndex, action)
 
 function App() {
   const [tasks, dispatch] = useReducer(reducer, ['HELOO']);  
-  const [taskIndex, addIndex] = useReducer(dispatchIndex, 1);
+  const [taskIndex, addIndex] = useReducer(dispatchIndex, 0);
 
   useEffect(() => {
     dispatch({type: 'GET'});
