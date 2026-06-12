@@ -1,3 +1,4 @@
+import EditTask from "./components/EditTask";
 import TaskInput from "./components/TaskInput";
 import ToDoTask from "./components/ToDoTask";
 import { useReducer, useEffect } from "react";
@@ -51,11 +52,13 @@ function reducer(tasks, action)
       }
       return newArr;
     case 'EDIT':
-      let editTask = tasks.find(i => i.index === action.payload);
+      let editTask = tasks.find(i => i.index === action.index);
       let editArr = [...tasks];
-      if (editTask !== undefined)
+      if (editTask !== undefined && editTask !== null)
       {
-        console.log('Heyyy');
+        let editTaskIndex = editArr.findIndex(i => i.index === action.index);
+        editTask.name = action.payload;
+        editArr[editTaskIndex] = editTask;
       }
       else 
       {
@@ -122,18 +125,39 @@ function dispatchIndex(taskIndex, action)
         return taskIndex + 1;
       }
     case 'GET':
-      return taskIndex;
+      let arr = getArray('Tasks');
+      if (arr.length > 0)
+      {
+        return Math.max(...arr.map(i => i.index)) + 1;
+      }
+      else
+      {
+        return 0;
+      }
     default:
       return taskIndex;
   }
 }
 
+function dispatchTask(task, action)
+{
+  return action.payload;
+}
+
+function dispatchModal(modal, action)
+{
+  return !modal;
+}
+
 function App() {
-  const [tasks, dispatch] = useReducer(reducer, ['HELOO']);  
+  const [tasks, dispatch] = useReducer(reducer, []);  
   const [taskIndex, addIndex] = useReducer(dispatchIndex, 0);
+  const [modal, openModal] = useReducer(dispatchModal, false);
+  const [task, changeTask] = useReducer(dispatchTask, null);
 
   useEffect(() => {
     dispatch({type: 'GET'});
+    addIndex({type: 'GET'});
   }, []);
 
   return (
@@ -141,6 +165,7 @@ function App() {
       <header>
         <h2>To-Do</h2>
       </header>
+      <EditTask visible={modal ? '' : 'hide-modal'} task={task} edit={dispatch} close={openModal} />
       <TaskInput addIndex={addIndex} taskIndex={taskIndex} dispatch={dispatch} tasks={tasks} />
       <div className='task-container'>
           {tasks?.map(link => (
@@ -150,7 +175,10 @@ function App() {
               time={link.time} 
               taskProgress={link.progress} 
               onChange={() => dispatch({type: 'CHANGE', payload: link.index, prog: link.progress})}
-              onEdit={() => dispatch({type: 'EDIT', payload: link.index})}
+              onEdit={() => {
+                changeTask({payload: link.index});
+                openModal();
+              }}
               onDelete={() => dispatch({type: 'DELETE', payload: link.index})}
             />
           ))}

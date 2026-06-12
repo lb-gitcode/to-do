@@ -33,11 +33,11 @@ header h2 {
 
 /* Tasks */
 
-.task-input form {
+.task-input form, .edit-form form {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
-  .input-container {
+  .input-container, .edit-container {
     height: 50px;
     display: flex;
     flex-direction: column;
@@ -151,4 +151,28 @@ header h2 {
 
 .complete {
   background-color: rgb(156, 255, 164);
+}
+
+/* Edit Form */
+
+.edit-form {
+  position: fixed;
+  display: flex;
+  left: 10%;
+  top: 25%;
+  width: 80%;
+  height: 45%;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(215, 191, 219);
+  background-color: rgb(220, 206, 240);
+  color: black;
+}
+
+.hide-modal {
+  visibility: hidden;
+  opacity: 0;
+  display: none;
+  pointer-events: none;
 }
