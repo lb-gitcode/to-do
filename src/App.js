@@ -18,7 +18,7 @@ function reducer(tasks, action)
       }
       else
       {
-        let initArray = [{ index: action.index, name: action.payload, progress: 'in-progress', time: now }];
+        let initArray = [{ index: action.index, name: action.payload, progress: 'in-progress', time: getCurrentTime() }];
         setArray(initArray, 'Tasks');
         return initArray;
       }
@@ -41,6 +41,7 @@ function reducer(tasks, action)
         {
           console.log('Task in progress.');
           task.progress = 'in-progress';
+          task.time = getCurrentTime();
           newArr[index] = task;
         }
         else 
